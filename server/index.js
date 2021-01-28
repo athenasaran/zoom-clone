@@ -3,7 +3,7 @@ const server = require('http').createServer((request, response) => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
     })
-    response.end('heey')
+    response.end('hey there!')
 })
 
 const socketIo = require('socket.io')
@@ -17,10 +17,12 @@ const io = socketIo(server, {
 io.on('connection', socket => {
     console.log('connection', socket.id)
     socket.on('join-room', (roomId, userId) => {
+        
+        // adiciona os usuarios na mesma sala
         socket.join(roomId)
         socket.to(roomId).broadcast.emit('user-connected', userId)
         socket.on('disconnect', () => {
-            console.log('disconnect', roomId, userId)
+            console.log('disconnected!', roomId, userId)
             socket.to(roomId).broadcast.emit('user-disconnected', userId)
         })
     })

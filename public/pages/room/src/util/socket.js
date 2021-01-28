@@ -4,16 +4,13 @@ class SocketBuilder {
         this.onUserConnected = () => { }
         this.onUserDisconnected = () => { }
     }
-
     setOnUserConnected(fn) {
         this.onUserConnected = fn
 
         return this
     }
-
     setOnUserDisconnected(fn) {
         this.onUserDisconnected = fn
-
         return this
     }
 

@@ -2,6 +2,7 @@ class View {
     constructor() {
 
     }
+
     createVideoElement({ muted = true, src, srcObject }) {
         const video = document.createElement('video')
         video.muted = muted
@@ -15,14 +16,18 @@ class View {
         }
 
         if (srcObject) {
-            video.addEventListener('loadedmetadata', _ => video.play())
+            video.addEventListener("loadedmetadata", _ => video.play())
         }
 
         return video
     }
 
-    renderVideo({ userId, stream = null, url = null, isCurrentId = false }) {
-        const video = this.createVideoElement({ src: url, srcObject: stream })
+    renderVideo({ userId, stream = null, url = null, isCurrentId = false, muted = true }) {
+        const video = this.createVideoElement({
+            muted,
+            src: url,
+            srcObject: stream
+        })
         this.appendToHTMLTree(userId, video, isCurrentId)
     }
 
@@ -36,7 +41,12 @@ class View {
         div.append(div2)
 
         const videoGrid = document.getElementById('video-grid')
-
         videoGrid.append(div)
+    }
+
+    setParticipants(count) {
+        const myself = 1
+        const participants = document.getElementById('participants')
+        participants.innerHTML = (count + myself)
     }
 }

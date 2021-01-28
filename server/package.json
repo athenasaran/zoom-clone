@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Athena Fernandes Sarantôpoulos",
   "license": "ISC",
   "dependencies": {
     "socket.io": "^3.0.5"
